@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{271CA783-FFBA-4256-AB12-15FBE3C730C7}</ProjectGuid>
+    <ProjectGuid>{C287BEDB-A579-4CE2-AC69-00B99F69C2B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ContactsBusinessLayer</RootNamespace>
-    <AssemblyName>ContactsBusinessLayer</AssemblyName>
+    <RootNamespace>ContactsDataAccessLayer</RootNamespace>
+    <AssemblyName>ContactsDataAccessLayer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,14 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contact.cs" />
+    <Compile Include="clsDataAccessSettings.cs" />
+    <Compile Include="ContactData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ContactsDataAccessLayer\ContactsDataAccessLayer.csproj">
-      <Project>{111b5df4-59cb-48db-91c0-8e4121605ec9}</Project>
-      <Name>ContactsDataAccessLayer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -55,7 +55,6 @@ namespace ContactsBusinessLayer
 
         public static clsContact Find(int ID)
         {
-
             string FirstName = "", LastName = "", Email = "", Phone = "", Address = "", ImagePath = "";
             DateTime DateOfBirth = DateTime.Now;
             int CountryID = -1;
@@ -67,11 +66,9 @@ namespace ContactsBusinessLayer
                            Email, Phone, Address, DateOfBirth, CountryID, ImagePath);
             else
                 return null;
-
         }
 
-
-        private bool _AddNewContact()
+        private  bool _AddNewContact()
         {
             this.ID = clsContactDataAccess.AddNewContact(this.FirstName, this.LastName, this.Email, this.Phone,
                 this.Address, this.DateOfBirth, this.CountryID, this.ImagePath);
@@ -81,21 +78,19 @@ namespace ContactsBusinessLayer
         private bool _UpdateContact()
         {
             //call DataAccess Layer 
+
             return clsContactDataAccess.UpdateContact(this.ID, this.FirstName, this.LastName, this.Email, this.Phone,
-                            this.Address, this.DateOfBirth, this.CountryID, this.ImagePath);
+                 this.Address, this.DateOfBirth, this.CountryID, this.ImagePath);
 
         }
-
-        public bool Save()
+       
+        public bool Save ()
         {
-
-
-            switch (Mode)
+            switch(Mode)
             {
                 case enMode.AddNew:
-                    if (_AddNewContact())
+                    if(_AddNewContact())
                     {
-
                         Mode = enMode.Update;
                         return true;
                     }
@@ -103,19 +98,12 @@ namespace ContactsBusinessLayer
                     {
                         return false;
                     }
-
-                case enMode.Update:
-
-                    return _UpdateContact();
-
+                    case enMode.Update:
+                    return (_UpdateContact());
             }
-
-
-
 
             return false;
         }
-
 
 
     }

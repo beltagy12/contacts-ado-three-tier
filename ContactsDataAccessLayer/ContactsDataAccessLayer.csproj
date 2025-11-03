@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C287BEDB-A579-4CE2-AC69-00B99F69C2B4}</ProjectGuid>
+    <ProjectGuid>{111B5DF4-59CB-48DB-91C0-8E4121605EC9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ContactsDataAccessLayer</RootNamespace>

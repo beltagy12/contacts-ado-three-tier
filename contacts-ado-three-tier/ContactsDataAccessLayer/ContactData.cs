@@ -9,13 +9,13 @@ namespace ContactsDataAccessLayer
     {
         public static bool GetContactInfoByID(int ID, ref String FirstName, ref String LastName,
             ref string Email, ref string Phone
-            , ref string Address, ref int CountryID, ref DateTime DateofBirth, ref string Imegpath)
+            , ref string Address, ref int CountryID , ref DateTime DateofBirth, ref string Imegpath)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = "SELECT * FROM Contacts where ContactID=@ContactID";
-
-            SqlCommand command = new SqlCommand(query, connection);
+            
+            SqlCommand command=new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@ContactID", ID);
             try
@@ -24,15 +24,15 @@ namespace ContactsDataAccessLayer
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    isFound = true;
+                    isFound   = true;
 
 
                     FirstName = (string)reader["FirstName"];
-                    LastName = (string)reader["LastName"];
+                    LastName  = (string)reader["LastName"];
                     Email = (string)reader["Email"];
                     Phone = (string)reader["Phone"];
                     Address = (string)reader["Address"];
-                    CountryID = (int)reader["CountryID"];
+                    CountryID =(int)reader["CountryID"];
                     DateofBirth = (DateTime)reader["DateOfBirth"];
 
                     if (reader["Imegpath"] != DBNull.Value)
@@ -43,16 +43,16 @@ namespace ContactsDataAccessLayer
                     else
                         Imegpath = "";
                 }
-                //else { isFound = false; }
-                reader.Close();
+                else { isFound = false; }   
+                    reader.Close();
             }
-            catch
-            {
-
+            catch 
+            { 
+            isFound=false;
             }
             finally
             {
-                connection.Close();
+            connection.Close(); 
             }
 
 
@@ -67,7 +67,7 @@ namespace ContactsDataAccessLayer
             string query = @"insert into Contacts (FirstName, LastName, Email, Phone, Address,DateOfBirth, CountryID,ImagePath)
                              VALUES (@FirstName, @LastName, @Email, @Phone, @Address,@DateOfBirth, @CountryID,@ImagePath);
                              SELECT SCOPE_IDENTITY(); ";
-            SqlCommand command = new SqlCommand(query, conecction);
+            SqlCommand command=new SqlCommand(query, conecction);
 
             command.Parameters.AddWithValue("@FirstName", FirstName);
             command.Parameters.AddWithValue("@LastName", LastName);
@@ -91,18 +91,16 @@ namespace ContactsDataAccessLayer
                     return -1;
                 }
             }
-            catch
+            catch 
             {
-                //Console.WriteLine("Error: " + ex.Message);
+               //Console.WriteLine("Error: " + ex.Message);
 
             }
             finally { conecction.Close(); }
             return -1;
         }
-
-
         public static bool UpdateContact(int ID, string FirstName, string LastName,
-             string Email, string Phone, string Address, DateTime DateOfBirth, int CountryID, string ImagePath)
+            string Email, string Phone, string Address, DateTime DateOfBirth, int CountryID, string ImagePath)
         {
 
             int rowsAffected = 0;
@@ -129,11 +127,7 @@ namespace ContactsDataAccessLayer
             command.Parameters.AddWithValue("@Address", Address);
             command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
             command.Parameters.AddWithValue("@CountryID", CountryID);
-            if (ImagePath != "")
-                command.Parameters.AddWithValue("@ImagePath", ImagePath);
-            else
-                command.Parameters.AddWithValue("@ImagePath", System.DBNull.Value);
-
+            command.Parameters.AddWithValue("@ImagePath", ImagePath);
 
             try
             {
@@ -154,6 +148,7 @@ namespace ContactsDataAccessLayer
 
             return (rowsAffected > 0);
         }
+
 
     }
 }
